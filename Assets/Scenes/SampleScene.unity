@@ -831,9 +831,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0640a61c6e64a4ed1970d4acf75439d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3
+  url: http://lovattostudio.com/Demo/UAP/OnTopOfTheWord.ogg
   source: {fileID: 1116944634}
   slider: {fileID: 600092584}
+  questionStruct:
+    status: 0
+    questions: []
 --- !u!4 &1116944636
 Transform:
   m_ObjectHideFlags: 0

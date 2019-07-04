@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class StreamMusic : MonoBehaviour
 {
-    public string url;
+    public string url;// "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
     public AudioSource source;
     public Slider slider;
 
@@ -46,7 +46,7 @@ public class StreamMusic : MonoBehaviour
 
     IEnumerator GetAudioClip()
     {
-        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG))
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.OGGVORBIS))
         {
             StartCoroutine(ShowProgress(www));
             yield return www.SendWebRequest();
@@ -68,7 +68,7 @@ public class StreamMusic : MonoBehaviour
     {
         if (source.clip != null)
         {
-            if (!source.isPlaying && source.clip.isReadyToPlay)
+            if (!source.isPlaying /*&& source.clip.isReadyToPlay*/)
                 source.Play();
         }
     }
