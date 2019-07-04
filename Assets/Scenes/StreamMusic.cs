@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class StreamMusic : MonoBehaviour
@@ -22,10 +23,11 @@ public class StreamMusic : MonoBehaviour
         slider.minValue = 0;
         slider.maxValue = 1;
         source = GetComponent<AudioSource>();
-        StartCoroutine(GetAudio(url));
+        StartCoroutine(GetAudio());
+        //StartCoroutine(GetAudioClip());
     }
 
-    private IEnumerator GetAudio(string url)
+    private IEnumerator GetAudio()
     {
         WWW www = new WWW(url);
         StartCoroutine(ShowProgress(www));
@@ -36,8 +38,30 @@ public class StreamMusic : MonoBehaviour
             yield break;
         }
 
-        source.clip = www.GetAudioClip(false, true);
+        AudioClip clip = www.GetAudioClip(false, true);
+        clip.name = "Song";
+        source.clip = clip;
         Debug.Log("Loaded Clip");
+    }
+
+    IEnumerator GetAudioClip()
+    {
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG))
+        {
+            StartCoroutine(ShowProgress(www));
+            yield return www.SendWebRequest();
+
+            if (www.isNetworkError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
+                clip.name = "Song";
+                source.clip = clip;
+            }
+        }
     }
 
     private void Update()
@@ -54,6 +78,17 @@ public class StreamMusic : MonoBehaviour
         while (!www.isDone)
         {
             slider.value = www.progress;
+            //Debug.Log(string.Format("Downloaded {0:P1}", www.progress));
+            yield return new WaitForSeconds(.1f);
+        }
+        Debug.Log("Done");
+    }
+
+    private IEnumerator ShowProgress(UnityWebRequest www)
+    {
+        while (!www.isDone)
+        {
+            slider.value = www.downloadProgress;
             //Debug.Log(string.Format("Downloaded {0:P1}", www.progress));
             yield return new WaitForSeconds(.1f);
         }
