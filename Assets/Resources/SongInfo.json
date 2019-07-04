@@ -1,0 +1,42 @@
+{ 
+  "animations":{ 
+      "1":"http://vroovygames.com/tuneMasters/Animations/elephant_happy.json",
+      "2":"http://vroovygames.com/tuneMasters/Animations/elephant_extream_happy.json",
+      "0":"http://vroovygames.com/tuneMasters/Animations/elephant_idle.json",
+      "-1":"http://vroovygames.com/tuneMasters/Animations/elephant_sad.json",
+      "-2":"http://vroovygames.com/tuneMasters/Animations/elephant_extream_sad.json"
+  },
+  "status":3,
+  "questions":[ 
+      { 
+         "question":"Guess the Singer of this song",
+         "options":"Nakash Aziz,Sharib Toshi,Brijesh Shandilya",
+         "answer":"Meet Bros",
+         "songurl":"http://akdls3re.hungama.com/s3/rd/ms2/47000316/4/1530/Aa_Toh_Sahi.mp4?__gda__=1562243615_f9a658605d4471bad54bc37af2f3db04"
+      },
+      { 
+         "question":"Guess the Movie this song is from",
+         "options":"Maa,Raabta,Tere Mere",
+         "answer":"Badrinath Ki Dulhania",
+         "songurl":"http://akdls3re.hungama.com/s3/rd/ms2/46999726/4/1530/Badri_Ki_Dulhania_(Title_Track).mp4?__gda__=1562243615_b990e96d59e7886f8234ca08631f684f"
+      },
+      { 
+         "question":"Guess the Actor in this song",
+         "options":"Yunus Parvez,Amjad Khan,Sanjay Kapoor",
+         "answer":"Varun Sharma",
+         "songurl":"http://akdls3re.hungama.com/s3/rd/ms2/47000023/4/1530/Main_Tera_Boyfriend.mp4?__gda__=1562243615_82b525d5f355abc4874ea9ae6236c58c"
+      },
+      { 
+         "question":"Guess the Actor in this song",
+         "options":"Sadha,Ajit Vachchani,Mouni Roy",
+         "answer":"Aditi Rao Hydari",
+         "songurl":"http://akdls3re.hungama.com/s3/rd/ms2/39379306/4/1530/Lag_Ja_Gale.MP4?__gda__=1562243615_001d21d5631782c7188925f380d4dbb4"
+      },
+      { 
+         "question":"Guess the Actor in this song",
+         "options":"Ram Sethi,Romika Sharma,Aparshakti Khurana",
+         "answer":"Sanjay Mishra",
+         "songurl":"http://akdls3re.hungama.com/s3/rd/ms2/39379195/4/1530/Mere_Rashke_Qamar.MP4?__gda__=1562243615_d5b21340bb9d636b33d81cc360b0a835"
+      }
+    ]
+}
