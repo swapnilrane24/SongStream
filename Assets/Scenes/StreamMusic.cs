@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class StreamMusic : MonoBehaviour
 {
+    //http://ice1.somafm.com/groovesalad-128-mp3
     public string url;// "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
     public AudioSource source;
     public Slider slider;
@@ -31,7 +32,12 @@ public class StreamMusic : MonoBehaviour
     {
         WWW www = new WWW(url);
         StartCoroutine(ShowProgress(www));
-        yield return www;
+
+        while (www.progress < 0.1f)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
         if (string.IsNullOrEmpty(www.error) == false)
         {
             Debug.Log("Did not work");
@@ -39,6 +45,7 @@ public class StreamMusic : MonoBehaviour
         }
 
         AudioClip clip = www.GetAudioClip(false, true);
+        //clip = WWWAudioExtensions.GetAudioClip(www, false, true, AudioType.OGGVORBIS);
         clip.name = "Song";
         source.clip = clip;
         Debug.Log("Loaded Clip");
