@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using System;
+using static QuestionStruct;
 
 public class StreamMusic : MonoBehaviour
 {
@@ -19,13 +21,15 @@ public class StreamMusic : MonoBehaviour
     {
         questionStruct = new QuestionStruct();
 
-        StartCoroutine(LoadJson());
+        //StartCoroutine(LoadJson());
 
         slider.minValue = 0;
         slider.maxValue = 1;
         source = GetComponent<AudioSource>();
-        StartCoroutine(GetAudio());
+        //StartCoroutine(GetAudio());
         //StartCoroutine(GetAudioClip());
+
+        //EventManager.GetInstance().AddListener<ActiveChallenge>(LoadJson);
     }
 
     private IEnumerator GetAudio()
@@ -102,7 +106,7 @@ public class StreamMusic : MonoBehaviour
         Debug.Log("Done");
     }
 
-    IEnumerator LoadJson()
+    public IEnumerator LoadJson(Action<Question[]> onComplete)
     {
         ResourceRequest LoadRequest = Resources.LoadAsync("SongInfo");
         yield return LoadRequest;
@@ -122,5 +126,7 @@ public class StreamMusic : MonoBehaviour
                 questionStruct.questions[i].option = optionArry;
             }
         }
+
+        onComplete(questionStruct.questions);
     }
 }
