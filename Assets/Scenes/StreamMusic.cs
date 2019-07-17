@@ -17,8 +17,11 @@ public class StreamMusic : MonoBehaviour
 
     public QuestionStruct questionStruct;
 
+    public Utils utils;
+
     void Start()
     {
+        utils.getQuestion += LoadJson;
         questionStruct = new QuestionStruct();
 
         //StartCoroutine(LoadJson());
@@ -106,11 +109,33 @@ public class StreamMusic : MonoBehaviour
         Debug.Log("Done");
     }
 
-    public IEnumerator LoadJson(Action<Question[]> onComplete)
+    //public IEnumerator LoadJson(Action<Question[]> onComplete)
+    //{
+    //    ResourceRequest LoadRequest = Resources.LoadAsync("SongInfo");
+    //    yield return LoadRequest;
+    //    data = LoadRequest.asset as TextAsset;
+
+    //    if (data != null)
+    //    {
+    //        questionStruct = JsonUtility.FromJson<QuestionStruct>(data.text);
+    //    }
+
+    //    if (questionStruct.status > 0)
+    //    {
+    //        for (int i = 0; i < questionStruct.status; i++)
+    //        {
+    //            string options = questionStruct.questions[i].options;
+    //            string[] optionArry = options.Split(',');
+    //            questionStruct.questions[i].option = optionArry;
+    //        }
+    //    }
+
+    //    onComplete(questionStruct.questions);
+    //}
+
+    public void LoadJson(Action<Question[]> onComplete)
     {
-        ResourceRequest LoadRequest = Resources.LoadAsync("SongInfo");
-        yield return LoadRequest;
-        data = LoadRequest.asset as TextAsset;
+        data = Resources.Load("SongInfo") as TextAsset;
 
         if (data != null)
         {
